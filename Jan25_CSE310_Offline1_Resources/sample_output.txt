@@ -1,0 +1,277 @@
+	ScopeTable# 1 created
+Cmd 1: I foo FUNCTION INT INT FLOAT INT
+	Inserted in ScopeTable# 1 at position 7, 1
+Cmd 2: I i VAR
+	Inserted in ScopeTable# 1 at position 1, 1
+Cmd 3: L i
+	'i' found in ScopeTable# 1 at position 1, 1
+Cmd 4: L i j
+	Number of parameters mismatch for the command L
+Cmd 5: L j
+	'j' not found in any of the ScopeTables
+Cmd 6: S
+	ScopeTable# 2 created
+Cmd 7: I 23 NUMBER
+	Inserted in ScopeTable# 2 at position 5, 1
+Cmd 8: I car STRUCT INT n_doors BOOL is_electric STRING brand
+	Inserted in ScopeTable# 2 at position 5, 2
+Cmd 9: I brand VAR
+	Inserted in ScopeTable# 2 at position 4, 1
+Cmd 10: P C
+	ScopeTable# 2
+	1--> 
+	2--> 
+	3--> 
+	4--> <brand,VAR> 
+	5--> <23,NUMBER> <car,STRUCT,{(INT,n_doors),(BOOL,is_electric),(STRING,brand)}> 
+	6--> 
+	7--> 
+Cmd 11: D i
+	Not found in the current ScopeTable
+Cmd 12: D j
+	Not found in the current ScopeTable
+Cmd 13: E
+	ScopeTable# 2 removed
+Cmd 14: S
+	ScopeTable# 3 created
+Cmd 15: E
+	ScopeTable# 3 removed
+Cmd 16: S
+	ScopeTable# 4 created
+Cmd 17: P A
+	ScopeTable# 4
+	1--> 
+	2--> 
+	3--> 
+	4--> 
+	5--> 
+	6--> 
+	7--> 
+		ScopeTable# 1
+		1--> <i,VAR> 
+		2--> 
+		3--> 
+		4--> 
+		5--> 
+		6--> 
+		7--> <foo,FUNCTION,INT<==(INT,FLOAT,INT)> 
+Cmd 18: S
+	ScopeTable# 5 created
+Cmd 19: I <= RELOP
+	Inserted in ScopeTable# 5 at position 7, 1
+Cmd 20: I == RELOP
+	Inserted in ScopeTable# 5 at position 2, 1
+Cmd 21: P A
+	ScopeTable# 5
+	1--> 
+	2--> <==,RELOP> 
+	3--> 
+	4--> 
+	5--> 
+	6--> 
+	7--> <<=,RELOP> 
+		ScopeTable# 4
+		1--> 
+		2--> 
+		3--> 
+		4--> 
+		5--> 
+		6--> 
+		7--> 
+			ScopeTable# 1
+			1--> <i,VAR> 
+			2--> 
+			3--> 
+			4--> 
+			5--> 
+			6--> 
+			7--> <foo,FUNCTION,INT<==(INT,FLOAT,INT)> 
+Cmd 22: I >= RELOP
+	Inserted in ScopeTable# 5 at position 4, 1
+Cmd 23: P C
+	ScopeTable# 5
+	1--> 
+	2--> <==,RELOP> 
+	3--> 
+	4--> <>=,RELOP> 
+	5--> 
+	6--> 
+	7--> <<=,RELOP> 
+Cmd 24: I <= RELOP
+	'<=' already exists in the current ScopeTable
+Cmd 25: I foo STRUCT INT a FLOAT b
+	Inserted in ScopeTable# 5 at position 7, 2
+Cmd 26: P A
+	ScopeTable# 5
+	1--> 
+	2--> <==,RELOP> 
+	3--> 
+	4--> <>=,RELOP> 
+	5--> 
+	6--> 
+	7--> <<=,RELOP> <foo,STRUCT,{(INT,a),(FLOAT,b)}> 
+		ScopeTable# 4
+		1--> 
+		2--> 
+		3--> 
+		4--> 
+		5--> 
+		6--> 
+		7--> 
+			ScopeTable# 1
+			1--> <i,VAR> 
+			2--> 
+			3--> 
+			4--> 
+			5--> 
+			6--> 
+			7--> <foo,FUNCTION,INT<==(INT,FLOAT,INT)> 
+Cmd 27: D ==
+	Deleted '==' from ScopeTable# 5 at position 2, 1
+Cmd 28: I foo VAR
+	'foo' already exists in the current ScopeTable
+Cmd 29: D 23
+	Not found in the current ScopeTable
+Cmd 30: D
+	Number of parameters mismatch for the command D
+Cmd 31: P A
+	ScopeTable# 5
+	1--> 
+	2--> 
+	3--> 
+	4--> <>=,RELOP> 
+	5--> 
+	6--> 
+	7--> <<=,RELOP> <foo,STRUCT,{(INT,a),(FLOAT,b)}> 
+		ScopeTable# 4
+		1--> 
+		2--> 
+		3--> 
+		4--> 
+		5--> 
+		6--> 
+		7--> 
+			ScopeTable# 1
+			1--> <i,VAR> 
+			2--> 
+			3--> 
+			4--> 
+			5--> 
+			6--> 
+			7--> <foo,FUNCTION,INT<==(INT,FLOAT,INT)> 
+Cmd 32: L 23
+	'23' not found in any of the ScopeTables
+Cmd 33: S
+	ScopeTable# 6 created
+Cmd 34: I x VAR
+	Inserted in ScopeTable# 6 at position 2, 1
+Cmd 35: I y VAR
+	Inserted in ScopeTable# 6 at position 3, 1
+Cmd 36: P A
+	ScopeTable# 6
+	1--> 
+	2--> <x,VAR> 
+	3--> <y,VAR> 
+	4--> 
+	5--> 
+	6--> 
+	7--> 
+		ScopeTable# 5
+		1--> 
+		2--> 
+		3--> 
+		4--> <>=,RELOP> 
+		5--> 
+		6--> 
+		7--> <<=,RELOP> <foo,STRUCT,{(INT,a),(FLOAT,b)}> 
+			ScopeTable# 4
+			1--> 
+			2--> 
+			3--> 
+			4--> 
+			5--> 
+			6--> 
+			7--> 
+				ScopeTable# 1
+				1--> <i,VAR> 
+				2--> 
+				3--> 
+				4--> 
+				5--> 
+				6--> 
+				7--> <foo,FUNCTION,INT<==(INT,FLOAT,INT)> 
+Cmd 37: L foo
+	'foo' found in ScopeTable# 5 at position 7, 2
+Cmd 38: E
+	ScopeTable# 6 removed
+Cmd 39: I num VAR
+	Inserted in ScopeTable# 5 at position 7, 3
+Cmd 40: I bicycle UNION INT n_gears BOOL is_hydrolic_brake STRING brand
+	Inserted in ScopeTable# 5 at position 4, 2
+Cmd 41: S
+	ScopeTable# 7 created
+Cmd 42: I true BOOL
+	Inserted in ScopeTable# 7 at position 5, 1
+Cmd 43: L a
+	'a' not found in any of the ScopeTables
+Cmd 44: P A
+	ScopeTable# 7
+	1--> 
+	2--> 
+	3--> 
+	4--> 
+	5--> <true,BOOL> 
+	6--> 
+	7--> 
+		ScopeTable# 5
+		1--> 
+		2--> 
+		3--> 
+		4--> <>=,RELOP> <bicycle,UNION,{(INT,n_gears),(BOOL,is_hydrolic_brake),(STRING,brand)}> 
+		5--> 
+		6--> 
+		7--> <<=,RELOP> <foo,STRUCT,{(INT,a),(FLOAT,b)}> <num,VAR> 
+			ScopeTable# 4
+			1--> 
+			2--> 
+			3--> 
+			4--> 
+			5--> 
+			6--> 
+			7--> 
+				ScopeTable# 1
+				1--> <i,VAR> 
+				2--> 
+				3--> 
+				4--> 
+				5--> 
+				6--> 
+				7--> <foo,FUNCTION,INT<==(INT,FLOAT,INT)> 
+Cmd 45: E
+	ScopeTable# 7 removed
+Cmd 46: E
+	ScopeTable# 5 removed
+Cmd 47: E
+	ScopeTable# 4 removed
+Cmd 48: S
+	ScopeTable# 8 created
+Cmd 49: P A
+	ScopeTable# 8
+	1--> 
+	2--> 
+	3--> 
+	4--> 
+	5--> 
+	6--> 
+	7--> 
+		ScopeTable# 1
+		1--> <i,VAR> 
+		2--> 
+		3--> 
+		4--> 
+		5--> 
+		6--> 
+		7--> <foo,FUNCTION,INT<==(INT,FLOAT,INT)> 
+Cmd 50: Q
+	ScopeTable# 8 removed
+	ScopeTable# 1 removed
