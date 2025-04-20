@@ -15,7 +15,7 @@ Cmd 7: I 23 NUMBER
 	Inserted in ScopeTable# 2 at position 5, 1
 Cmd 8: I car STRUCT INT n_doors BOOL is_electric STRING brand
 	Inserted in ScopeTable# 2 at position 5, 2
-Cmd 9: I brand VAR 
+Cmd 9: I brand VAR
 	Inserted in ScopeTable# 2 at position 4, 1
 Cmd 10: P C
 	ScopeTable# 2
@@ -207,7 +207,7 @@ Cmd 38: E
 Cmd 39: I num VAR
 	Inserted in ScopeTable# 5 at position 7, 3
 Cmd 40: I bicycle UNION INT n_gears BOOL is_hydrolic_brake STRING brand
-	Inserted in ScopeTable# 5 at position 7, 4
+	Inserted in ScopeTable# 5 at position 4, 2
 Cmd 41: S
 	ScopeTable# 7 created
 Cmd 42: I true BOOL
@@ -227,10 +227,10 @@ Cmd 44: P A
 		1--> 
 		2--> 
 		3--> 
-		4--> <>=,RELOP> 
+		4--> <>=,RELOP> <bicycle,UNION,{(INT,n_gears),(BOOL,is_hydrolic_brake),(STRING,brand)}> 
 		5--> 
 		6--> 
-		7--> <<=,RELOP> <foo,STRUCT,{(INT,a),(FLOAT,b)}> <num,VAR> <bicycle,UNION,{(INT,n_gears),(BOOL,is_hydrolic_brake),(STRING,brand)}> 
+		7--> <<=,RELOP> <foo,STRUCT,{(INT,a),(FLOAT,b)}> <num,VAR> 
 			ScopeTable# 4
 			1--> 
 			2--> 

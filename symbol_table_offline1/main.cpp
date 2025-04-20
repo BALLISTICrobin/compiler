@@ -28,13 +28,29 @@ int main(int argc, char const *argv[])
     ifstream infile(argv[1]);
     ofstream outfile(argv[2]);
 
+    unsigned int (*hash_function)(string, unsigned int);
+    if(argc==3){
+        hash_function = SDBMHash;
+    }
+    else if(argc==4){
+        string hashFunction = argv[3];
+        if(hashFunction == "sdbm"){
+            hash_function = SDBMHash;
+        }else if(hashFunction == "djb2"){
+            hash_function = DJB2Hash;
+        }else{
+            cout << "Invalid hash function" << endl;
+            return 1;
+        }
+    }
+
     string line;
     int numBuckets;
 
     getline(infile, line);
     numBuckets = stoi(line);
 
-    SymbolTable st(numBuckets,1, outfile);
+    SymbolTable st(numBuckets,1, outfile, hash_function);
     int cmdCount = 1;
 
     while (getline(infile, line)) {

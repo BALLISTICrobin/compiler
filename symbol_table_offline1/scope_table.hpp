@@ -13,19 +13,21 @@ class ScopeTable
     int num_buckets;
     int scope_id;
     ScopeTable *parent_scope;
+    unsigned int (*hash_function)(string, unsigned int);
 
-    uint64_t getHashIndex(string name) const
+    unsigned int getHashIndex(string name) const
     {
-        uint64_t hash_value = SDBMHash(name);
+        unsigned int hash_value = hash_function(name,num_buckets);
         return hash_value % num_buckets;
     }
 
 public:
-    ScopeTable(int id, int num_buckets, ScopeTable *parent_scope = nullptr)
+    ScopeTable(int id, int num_buckets, ScopeTable *parent_scope = nullptr, unsigned int (*hash_function)(string, unsigned int)=SDBMHash)
     {
         this->scope_id = id;
         this->num_buckets = num_buckets;
         this->parent_scope = parent_scope;
+        this->hash_function = hash_function;
         hash_table = new SymbolInfo *[num_buckets];
         for (int i = 0; i < num_buckets; i++)
             hash_table[i] = nullptr;
@@ -46,6 +48,17 @@ public:
         }
         delete[] hash_table;
         cout << "ScopeTable with id " << scope_id << " destroyed" << endl;
+    }
+
+    // void setHashFunction(unsigned int (*hash_function)(string, unsigned int))
+    // {
+    //     this->hash_function = hash_function;
+    // }
+
+    //get hash function
+    unsigned int (*getHashFunction())(string, unsigned int)
+    {
+        return hash_function;
     }
 
     // create getters and setters for scope_id and parent_scope, num_buckets, hash_table

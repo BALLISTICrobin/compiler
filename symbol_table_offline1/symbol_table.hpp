@@ -14,12 +14,13 @@ class SymbolTable
     ostream &output_stream;
 
 public:
-    SymbolTable(int num_buckets, int id = 1, ostream &output_stream = cout)
+    SymbolTable(int num_buckets, int id = 1, ostream &output_stream = cout, unsigned int (*hash_function)(string, unsigned int) = SDBMHash)
         : output_stream(output_stream)
     {
         this->num_buckets = num_buckets;
         this->current_scope_id = id;
-        current_scope = new ScopeTable(id, num_buckets);
+        current_scope = new ScopeTable(id, num_buckets,nullptr, hash_function);
+        // current_scope->setHashFunction(hash_function);
         output_stream << "\tScopeTable# " << current_scope->getScopeId() << " created\n";
     }
 
@@ -36,7 +37,7 @@ public:
         if (current_scope != nullptr)
         {
             current_scope_id++;
-            ScopeTable *new_scope = new ScopeTable(current_scope_id, num_buckets, current_scope);
+            ScopeTable *new_scope = new ScopeTable(current_scope_id, num_buckets, current_scope, current_scope->getHashFunction());
             current_scope = new_scope;
             output_stream << "\tScopeTable# " << current_scope->getScopeId() << " created\n";
         }

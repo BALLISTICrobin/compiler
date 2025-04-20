@@ -7,7 +7,7 @@ L j
 S
 I 23 NUMBER
 I car STRUCT INT n_doors BOOL is_electric STRING brand
-I brand VAR 
+I brand VAR
 P C
 D i
 D j
