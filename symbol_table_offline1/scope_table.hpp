@@ -4,6 +4,7 @@
 #include <iostream>
 #include "symbol_info.hpp"
 #include "hash.hpp"
+
 using namespace std;
 
 class ScopeTable
@@ -28,7 +29,6 @@ public:
         hash_table = new SymbolInfo *[num_buckets];
         for (int i = 0; i < num_buckets; i++)
             hash_table[i] = nullptr;
-
         cout << "ScopeTable with id " << scope_id << " created" << endl;
     }
 
@@ -94,7 +94,7 @@ public:
         {
             if (cur->getName() == name)
             {
-                output_stream << "<" << name << "," << type << "> already exists in the current ScopeTable" << endl;
+                output_stream << "\t\'" << name << "\' already exists in the current ScopeTable" << endl;
                 return false;
             }
             prev = cur;
@@ -124,7 +124,7 @@ public:
         {
             if (entry->getName() == name)
             {
-                output_stream << "\tFound in ScopeTable# " << scope_id << " at position " << index + 1 << ", " << pos << "\n";
+                output_stream <<"\t\'"<<name<<"\' " <<"found in ScopeTable# " << scope_id << " at position " << index + 1 << ", " << pos << "\n";
                 return entry;
             }
             entry = entry->getNext();
@@ -152,14 +152,14 @@ public:
                     prev->setNext(entry->getNext());
                 }
                 delete entry;
-                output_stream<<"Deleted"<<'\''<<name << '\'' <<"from scopetable #" << scope_id << " at position " << index + 1 << ", " << pos << "\n";
+                output_stream << "\tDeleted" << " \'" << name << "\'" << " from ScopeTable# " << scope_id << " at position " << index + 1 << ", " << pos << "\n";
                 return true;
             }
             prev = entry;
             entry = entry->getNext();
             pos++;
         }
-        output_stream << "not found in current ScopeTable\n";
+        output_stream << "\tNot found in the current ScopeTable\n";
         return false;
     }
 
@@ -169,20 +169,21 @@ public:
     // input: I car STRUCT INT n_doors BOOL is_electric STRING brand
     // output: <23,NUMBER> <car,STRUCT,{(INT,n_doors),(BOOL,is_electric),(STRING,brand)}>
 
-    void print(ostream &output_stream) const
+    void print(ostream &output_stream, int indent = 1) const
     {
-        output_stream << '\t'<<"ScopeTable # " << scope_id << "\n";
+        string tab(indent, '\t');
+        output_stream << tab << "ScopeTable# " << scope_id << "\n";
         for (int i = 0; i < num_buckets; i++)
         {
             SymbolInfo *entry = hash_table[i];
-
-            output_stream <<'\t'<< i + 1 << " --> ";
+            output_stream << tab << i + 1 << "-->";
             while (entry != nullptr)
             {
+                output_stream << " ";
                 entry->print(output_stream);
                 entry = entry->getNext();
             }
-            output_stream << "\n";
+            output_stream << " \n";
         }
     }
 };

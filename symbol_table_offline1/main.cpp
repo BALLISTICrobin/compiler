@@ -18,8 +18,8 @@ string trim(const string& str) {
 }
 
 bool isOnlyWhitespace(const std::string& str) {
-    return std::all_of(str.begin(), str.end(), [](unsigned char ch) {
-        return std::isspace(ch);
+    return all_of(str.begin(), str.end(), [](unsigned char ch) {
+        return isspace(ch);
     });
 }
 
@@ -79,7 +79,7 @@ int main(int argc, char const *argv[])
         } else if (cmd == "P") {
             string subcmd;
             iss >> subcmd;
-            if (subcmd == "A") st.printAllScopes(outfile);
+            if (subcmd == "A") st.printAllScopes();
             else if (subcmd == "C") st.printCurrentScope(outfile);
         } else if (cmd == "Q") {
             st.~SymbolTable();
