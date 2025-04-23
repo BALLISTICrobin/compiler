@@ -32,5 +32,22 @@ unsigned int DJB2Hash(string str, unsigned int num_buckets)
     return hash;
 }
 
+unsigned int FNVHash(string str, unsigned int num_buckets)
+{
+    const unsigned int FNV_prime = 16777619;
+    unsigned int hash = 2166136261;
+    unsigned int len = str.length();
+
+    for (unsigned int i = 0; i < len; i++)
+    {
+        hash = (hash * FNV_prime) ^ str[i];
+    }
+
+    unsigned int bucket = hash % num_buckets;
+
+    return bucket;
+}
+
+
 
 #endif // HASH_HPP

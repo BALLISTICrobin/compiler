@@ -12,6 +12,7 @@ class SymbolTable
     int num_buckets;
     int current_scope_id;
     ostream &output_stream;
+    int collision_count = 0;
 
 public:
     SymbolTable(int num_buckets, int id = 1, ostream &output_stream = cout, unsigned int (*hash_function)(string, unsigned int) = SDBMHash)
@@ -56,12 +57,25 @@ public:
 
     bool insert(string &name, string &type)
     {
-        return current_scope->insert(name, type, output_stream);
+        return current_scope->insert(name, type, output_stream, collision_count);
     }
 
     bool remove(string &name)
     {
         return current_scope->Delete(name, output_stream);
+    }
+
+    int getCollisionCount() const
+    {
+        return collision_count;
+    }
+
+    double getCollisionRatio() {
+        return (double)collision_count / num_buckets;
+    }
+
+    void resetCollisionCount() {
+        collision_count = 0;
     }
 
     SymbolInfo *lookup(string &name)

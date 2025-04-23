@@ -14,6 +14,7 @@ class ScopeTable
     int scope_id;
     ScopeTable *parent_scope;
     unsigned int (*hash_function)(string, unsigned int);
+    // int collision_count = 0;
 
     unsigned int getHashIndex(string name) const
     {
@@ -95,7 +96,12 @@ public:
         hash_table = table;
     }
 
-    bool insert(string &name, string &type, ostream &output_stream)
+    // int getCollisionCount() const
+    // {
+    //     return collision_count;
+    // }
+
+    bool insert(string &name, string &type, ostream &output_stream, int &collision_count)
     {
         int index = getHashIndex(name);
         SymbolInfo *entry = hash_table[index];
@@ -103,6 +109,10 @@ public:
         SymbolInfo *prev = nullptr;
 
         int pos = 1;
+
+        if(entry!= nullptr)
+        collision_count++;
+
         while (cur != nullptr)
         {
             if (cur->getName() == name)

@@ -1,0 +1,151 @@
+7
+I foo FUNCTION INT INT FLOAT INT
+I i VAR
+L i
+L i j
+L j
+S
+I 23 NUMBER
+I car STRUCT INT n_doors BOOL is_electric STRING brand
+I brand VAR
+P C
+D i
+D j
+E
+S
+E
+S
+P A
+S
+I <= RELOP
+I == RELOP
+P A
+I >= RELOP
+P C
+I <= RELOP
+I foo STRUCT INT a FLOAT b
+P A
+D ==
+I foo VAR
+D 23
+D
+P A
+L 23
+S
+I x VAR
+I y VAR
+P A
+L foo
+E
+I num VAR
+I bicycle UNION INT n_gears BOOL is_hydrolic_brake STRING brand
+S
+I true BOOL
+L a
+P A
+E
+E
+E
+S
+P A
+S
+I alpha VAR
+I beta VAR
+I gamma VAR
+L alpha
+L beta
+L gamma
+S
+I person STRUCT STRING name INT age BOOL is_alive
+I vehicle UNION STRING type INT wheels
+I flag BOOL
+P C
+D alpha
+D beta
+D gamma
+P A
+E
+S
+I apple VAR
+I banana VAR
+I cherry VAR
+L apple
+L banana
+L cherry
+P A
+S
+I <= RELOP
+I >= RELOP
+I != RELOP
+P A
+D !=
+D <=
+I newFunc FUNCTION FLOAT BOOL INT
+P C
+I item STRUCT INT id STRING label
+L item
+E
+S
+I car STRUCT INT doors STRING model
+L car
+I bike UNION INT gears STRING model
+L bike
+P A
+S
+I user STRUCT STRING username STRING password
+I admin VAR
+I guest VAR
+P C
+D admin
+D guest
+L user
+E
+S
+I max VAR
+I min VAR
+I avg VAR
+P A
+E
+S
+I city VAR
+I country VAR
+I zipcode VAR
+L city
+L country
+L zipcode
+D country
+D city
+P A
+E
+S
+I team STRUCT STRING name INT score
+I match UNION STRING team1 STRING team2 INT duration
+P A
+S
+I game STRUCT STRING title INT rating
+L game
+D game
+P A
+E
+S
+I book STRUCT STRING title STRING author
+I lib UNION STRING bookname INT copies
+I flag BOOL
+P A
+S
+I test STRUCT STRING input INT result
+I judge VAR
+D judge
+L test
+E
+S
+I school STRUCT STRING name INT strength
+I dept UNION STRING deptName INT code
+P A
+S
+I teacher STRUCT STRING name BOOL is_fulltime
+I staff VAR
+D staff
+L teacher
+P A
+Q
