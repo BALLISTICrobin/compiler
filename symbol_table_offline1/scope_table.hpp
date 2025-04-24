@@ -110,8 +110,7 @@ public:
 
         int pos = 1;
 
-        if(entry!= nullptr)
-        collision_count++;
+        
 
         while (cur != nullptr)
         {
@@ -124,6 +123,8 @@ public:
             cur = cur->getNext();
             pos++;
         }
+        if(entry!= nullptr)
+        collision_count++;
 
         SymbolInfo *new_entry = new SymbolInfo(name, type);
         if (prev == nullptr)

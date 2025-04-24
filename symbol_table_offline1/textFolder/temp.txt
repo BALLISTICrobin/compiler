@@ -1,2 +1,2 @@
-Total collisions: 8
-Collision ratio: 1.14286
+Total collisions: 6
+Collision ratio: 0.857143
