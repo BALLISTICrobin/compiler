@@ -1,4 +1,4 @@
 Hash Function       Total Collisions    Collision Ratio     
-sdbm                6                   0.857143            
-djb2                2                   0.285714            
-fnv                 6                   0.857143            
+sdbm                4                   0.571429            
+djb2                1                   0.142857            
+fnv                 4                   0.571429            

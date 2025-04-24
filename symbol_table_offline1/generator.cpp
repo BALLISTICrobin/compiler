@@ -53,7 +53,7 @@ int main()
     {
         string hash = hashFunctions[i];
         string outputFile = "./textFolder/temp_" + hash + ".txt";
-        string command = "./main ./textFolder/sample_input2.txt " + outputFile + " " + hash;
+        string command = "./main ./textFolder/sample_input.txt " + outputFile + " " + hash;
         cout << "Running: " << command << endl;
         int result = system(command.c_str());
 
