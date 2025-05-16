@@ -1,0 +1,125 @@
+Line no 1: Token <INT> Lexeme int found
+
+Line no 1: Token <ID> Lexeme main found
+
+ScopeTable # 1
+6 --> < main : ID >
+
+Line no 1: Token <LPAREN> Lexeme ( found
+
+Line no 1: Token <RPAREN> Lexeme ) found
+
+Line no 1: Token <LCURL> Lexeme { found
+
+Line no 3: Token <CHAR> Lexeme char found
+
+Line no 3: Token <ID> Lexeme str1 found
+
+ScopeTable # 1.1
+4 --> < str1 : ID >
+ScopeTable # 1
+6 --> < main : ID >
+
+Line no 3: Token <LTHIRD> Lexeme [ found
+
+Line no 3: Token <CONST_INT> Lexeme 100 found
+
+ScopeTable # 1.1
+4 --> < str1 : ID >< 100 : CONST_INT >
+ScopeTable # 1
+6 --> < main : ID >
+
+Line no 3: Token <RTHIRD> Lexeme ] found
+
+Line no 3: Token <ASSIGNOP> Lexeme = found
+
+Line no 3: Token <STRING> Lexeme "I own a dog." found --> <STRING, I own a dog.>
+
+Line no 3: Token <SEMICOLON> Lexeme ; found
+
+Line no 4: Token <CHAR> Lexeme char found
+
+Line no 4: Token <ID> Lexeme str2 found
+
+ScopeTable # 1.1
+4 --> < str1 : ID >< 100 : CONST_INT >
+5 --> < str2 : ID >
+ScopeTable # 1
+6 --> < main : ID >
+
+Line no 4: Token <LTHIRD> Lexeme [ found
+
+Line no 4: Token <CONST_INT> Lexeme 100 found
+
+< 100 : CONST_INT > already exists in ScopeTable# 1.1 at position 4, 1
+
+Line no 4: Token <RTHIRD> Lexeme ] found
+
+Line no 4: Token <ASSIGNOP> Lexeme = found
+
+Line no 5: Token <STRING> Lexeme "I own a dog.\
+    His name is Jack." found --> <STRING, I own a dog.    His name is Jack.>
+
+Line no 5: Token <SEMICOLON> Lexeme ; found
+
+Line no 6: Token <CHAR> Lexeme char found
+
+Line no 6: Token <ID> Lexeme str3 found
+
+ScopeTable # 1.1
+4 --> < str1 : ID >< 100 : CONST_INT >
+5 --> < str2 : ID >
+6 --> < str3 : ID >
+ScopeTable # 1
+6 --> < main : ID >
+
+Line no 6: Token <LTHIRD> Lexeme [ found
+
+Line no 6: Token <CONST_INT> Lexeme 100 found
+
+< 100 : CONST_INT > already exists in ScopeTable# 1.1 at position 4, 1
+
+Line no 6: Token <RTHIRD> Lexeme ] found
+
+Line no 6: Token <ASSIGNOP> Lexeme = found
+
+Line no 7: Token <STRING> Lexeme "He said, \" I own a dog\"\
+    so I asked, \"What is his name?\"" found --> <STRING, He said, " I own a dog"    so I asked, "What is his name?">
+
+Line no 7: Token <SEMICOLON> Lexeme ; found
+
+Line no 9: Token <COMMENT> Lexeme //This is a single line comment. found
+
+Line no 11: Token <COMMENT> Lexeme //This is also a\
+    single line comment. found
+
+Line no 13: Token <COMMENT> Lexeme //This is also a /*Multi-line just for\
+    fun */ single line comment. found
+
+Line no 16: Token <COMMENT> Lexeme //1.2.3.4 not an\
+    error here. found
+
+Line no 20: Token <COMMENT> Lexeme /* A sample multi-line
+    comment
+    to check. */ found
+
+Line no 22: Token <RETURN> Lexeme return found
+
+Line no 22: Token <CONST_INT> Lexeme 0 found
+
+ScopeTable # 1.1
+4 --> < str1 : ID >< 100 : CONST_INT >
+5 --> < str2 : ID >
+6 --> < str3 : ID >< 0 : CONST_INT >
+ScopeTable # 1
+6 --> < main : ID >
+
+Line no 22: Token <SEMICOLON> Lexeme ; found
+
+Line no 24: Token <RCURL> Lexeme } found
+
+ScopeTable # 1
+6 --> < main : ID >
+
+Total lines: 25
+Total errors: 0

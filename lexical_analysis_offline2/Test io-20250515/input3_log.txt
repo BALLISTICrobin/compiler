@@ -1,0 +1,58 @@
+Error at line no 1: Too many decimal points 127.0.0.1
+
+
+Error at line no 2: Ill formed number 23E-1.2
+
+
+Error at line no 3: Ill formed number 5E7.2
+
+
+Error at line no 4: Invalid prefix on ID or invalid suffix on Number 123_bcd
+
+Error at line no 5: Multi character constant error 'na'
+
+
+Error at line no 6: Unterminated character '\t
+
+
+Error at line no 7: Unterminated character '
+
+
+Error at line no 8: Multi character constant error 'ab cd'
+
+
+Error at line no 9: Unterminated character '\'
+
+
+Error at line no 10: Empty character constant error ''
+
+
+Error at line no 11: Unterminated string "abcd
+
+Error at line no 12: Unterminated string "efgh\"
+
+Error at line no 13: Unterminated string "abcd\
+efgh
+
+Line no 15: Token <ID> Lexeme ijk found
+
+ScopeTable # 1
+4 --> < ijk : ID >
+
+Error at line no 15: Unterminated string "
+
+Error at line no 16: Unrecognized character #
+
+Error at line no 16: Unrecognized character $
+
+Error at line no 16: Unrecognized character @
+
+Error at line no 17: Unterminated comment /**abc
+def
+
+
+ScopeTable # 1
+4 --> < ijk : ID >
+
+Total lines: 19
+Total errors: 18

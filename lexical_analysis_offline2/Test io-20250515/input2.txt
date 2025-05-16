@@ -1,0 +1,24 @@
+int main(){
+	
+    char str1[100] = "I own a dog.";
+    char str2[100] = "I own a dog.\
+    His name is Jack.";
+    char str3[100] = "He said, \" I own a dog\"\
+    so I asked, \"What is his name?\"";
+
+    //This is a single line comment.
+    //This is also a\
+    single line comment.
+    //This is also a /*Multi-line just for\
+    fun */ single line comment.
+    
+    //1.2.3.4 not an\
+    error here.
+    
+    /* A sample multi-line
+    comment
+    to check. */
+        
+    return 0;
+    	
+}
