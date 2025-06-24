@@ -3,12 +3,14 @@
 %option yylineno
 
 %{
+#ifndef yyFlexLexer
+#define yyFlexLexer yyFlexLexer
+#include <FlexLexer.h>
+#endif
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <algorithm>  // for std::count
-
-// #include <FlexLexer.h>
 
 #include "symbol_table.hpp"
 
@@ -21,6 +23,7 @@ ofstream tokenout;
 ofstream logout;
 SymbolTable *symbolTable = nullptr;
 int error_count=0;
+string comment_buffer;
 
 string escapeString(const string& input) {
     string result;
@@ -62,6 +65,8 @@ int countNewlines(const char* str) {
 
 %}
 
+%x MULTI_COMMENT
+
 DIGIT           [0-9]
 LETTER          [a-zA-Z]
 ALPHANUM        [a-zA-Z0-9_]
@@ -78,8 +83,6 @@ STRING          \"{STRING_CONTENT}*\"
 MULTI_STRING    \"({STRING_CONTENT}|\\\n)*\"
 IDENTIFIER      ({LETTER}|_){ALPHANUM}*
 SINGLE_COMMENT  "//"[^\n]*(\\\n[^\n]*)*
-MULTI_COMMENT   "/"\*([^*]|\*+[^*/])*\*+"/"
-UNFINISHED_COMM "/"\*([^*]|\*+[^*/])*(\*+|\n)?
 ADDOP           "+"|"-"
 MULOP           "*"|"/"|"%"
 INCOP           "++"|"--"
@@ -105,6 +108,22 @@ ILL_FORMED      ({DIGIT}|{EXPONENT}|"\.")+
 UNRECOGNIZED    .
 
 %%
+"/*"       { BEGIN(MULTI_COMMENT); comment_buffer = yytext; }
+
+<MULTI_COMMENT>{
+    [^*\n]+          { comment_buffer += yytext; }
+    "*"+[^*/]        { comment_buffer += yytext; }
+    "*"+"/"        { comment_buffer += yytext; 
+                    BEGIN(INITIAL); 
+                    logout << "Line no " << lexer->lineno() << ": Token <COMMENT> Lexeme " << comment_buffer << " found\n\n";
+                    comment_buffer.clear();
+                  }
+    \n             { comment_buffer += yytext; }
+    <<EOF>>        { logout << "Error at line no " << lexer->lineno() << ": Unterminated comment " << comment_buffer << "\n\n";
+                    error_count++; 
+                    /* optionally exit or return */
+                  }
+}
 
 {NEWLINE}           { /* Ignore newlines */ }
 {WHITESPACE}        { /* Ignore whitespace */ }
@@ -164,18 +183,6 @@ UNRECOGNIZED    .
     tokenout << "<ID, " << lexeme << "> ";
     bool flag = symbolTable->insert(lexeme, "ID");
     if(flag==true) symbolTable->printAllScopes();
-}
-
-{UNFINISHED_COMM} {
-    int lines = countNewlines(yytext);
-    int starting_line = yylineno - lines;
-    logout << "Error at line no " << starting_line << ": Unterminated comment " << yytext << "\n\n";
-    error_count++;
-    // Do NOT update yylineno manually — Flex does this.
-}
-
-{MULTI_COMMENT} {
-    logout << "Line no " << lexer->lineno() << ": Token <COMMENT> Lexeme " << yytext << " found\n\n";
 }
 
 {SINGLE_COMMENT} {
@@ -310,3 +317,7 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+
+
+/* flex 2105019_lexical_analysis.l */
+/* g++ -I/opt/homebrew/include lex.yy.cc -o lexer */

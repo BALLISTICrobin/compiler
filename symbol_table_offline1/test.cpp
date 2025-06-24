@@ -23,18 +23,22 @@ bool isOnlyWhitespace(const std::string& str) {
 
 int main() {
     
-    string name = "     ";
-    istringstream iss(name);
-    string token;
-    iss>>token;
+    // string name = "     ";
+    // istringstream iss(name);
+    // string token;
+    // iss>>token;
 
-    cout<<token.empty() << endl;
+    // cout<<token.empty() << endl;
     
-    cout<<'\t'<<"hello"<<'\n';
-    cout<<"world"<<'\n';
-    cout<<'\t'<<"guys";
-    cout<<endl;
-    cout<<'\t'<<"hello"<<endl;
-    return 0;
+    // cout<<'\t'<<"hello"<<'\n';
+    // cout<<"world"<<'\n';
+    // cout<<'\t'<<"guys";
+    // cout<<endl;
+    // cout<<'\t'<<"hello"<<endl;
+    // return 0;
+
+    /**string test = "hello
+    \world";
+    cout<<test<<endl;*/
 }
 

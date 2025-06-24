@@ -53,5 +53,6 @@
         "algorithm": "cpp",
         "iomanip": "cpp",
         "fstream": "cpp"
-    }
+    },
+    "idf.pythonInstallPath": "/opt/homebrew/bin/python3"
 }
